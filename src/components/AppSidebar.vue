@@ -25,6 +25,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    z-index: 1000;
 }
 .side-menu {
     display: grid;

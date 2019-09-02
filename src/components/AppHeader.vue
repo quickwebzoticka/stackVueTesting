@@ -3,6 +3,7 @@
         <router-link class="header-link" to="/">Home</router-link>
         <router-link class="header-link" to="/about">About</router-link>
         <div class="counter">{{ $store.state.counter }}</div>
+        <div class="counter">{{ $store.state.phones }}</div>
     </div>
 </template>
 
@@ -26,7 +27,7 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 3;
+    z-index: 1001;
 }
 .header-link {
     padding: 10px 20px;

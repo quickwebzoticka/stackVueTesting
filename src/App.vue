@@ -3,11 +3,11 @@
     <app-header></app-header>
     <app-sidebar></app-sidebar>
     <div class="content">
-      <!-- <transition name="slide" mode="out-in" appear> -->
+      <transition name="slide" mode="out-in" appear>
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
-      <!-- </transition> -->
+      </transition>
     </div>
     
   </div>

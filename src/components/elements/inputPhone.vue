@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .input-phone {
-  padding: 10px 0px;
+  padding: 20px 0px 0;
 } 
 select {
   width: 200px;

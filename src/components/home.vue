@@ -18,15 +18,17 @@
                 <span v-if="$v.email.$error">Неправильный емэйл</span>
             </div>
             <custom-button 
-                :customTitle="'Increase Counter'"
                 :payload="1"
                 @btnClicked="increaseCounter"
-            ></custom-button>
+            >
+                Increase Counter
+            </custom-button>
             <custom-button 
-                :customTitle="'Decrease Counter'"
                 :payload="-1"
                 @btnClicked="increaseCounter"
-            ></custom-button>
+            >
+                Decrease Counter
+            </custom-button>
         </div>
     </div>
 </template>

@@ -1,6 +1,8 @@
 <template>
     <div class="button">
-        <button @click="btnClicked">{{ customTitle }}</button>
+        <button @click="btnClicked">
+            <slot>Send</slot>
+        </button>
     </div>
 </template>
 
