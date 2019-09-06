@@ -1,21 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import tab1 from './tab1/tab1'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    counter: 0,
-    phones: 0
-  },
-  mutations: {
-    counterUpdate (state, payload) {
-      if (state.counter === 0 && payload === -1) return false
-      state.counter = state.counter + payload
-    },
-    updateCountPhones (state, value) {
-      if (state.phones === 0 && value === -1) return false
-      state.phones = state.phones + value
-    }
+  state: {},
+  mutations: {},
+  actions: {},
+  modules: {
+    tab1
   }
 })

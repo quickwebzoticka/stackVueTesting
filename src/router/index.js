@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/home'
-import About from '../components/about'
+import first from '../components/tab-1'
+import second from '../components/tab-2'
+import third from '../components/tab-3'
+import empty from '../components/empty'
 
 Vue.use(VueRouter)
 
@@ -9,13 +11,22 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'first',
+      component: first
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/second',
+      name: 'second',
+      component: second
+    },
+    {
+      path: '/third',
+      name: 'third',
+      component: third
+    },
+    {
+      path: '*',
+      component: empty
     }
   ]
 })
