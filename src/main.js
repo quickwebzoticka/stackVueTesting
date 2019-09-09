@@ -12,12 +12,14 @@ Vue.config.productionTip = false
 
 Vue.mixin(globalMethods)
 
-Vue.commitData = function ($event) {
-  const name = $event.target.getAttribute('name')
-  const data = $event.target.value
-
-  this.$store.commit('changeState', { name, data })
-}
+Vue.filter('money', function (value) {
+  value = `${value}`
+  return `${parseInt(value.replace(/ /g, '')).toLocaleString()} руб`
+})
+Vue.filter('procent', function (value) {
+  let val = (`${parseFloat(value)}`).slice(0, 5)
+  return (`${val} %`)
+})
 
 new Vue({
   router,
