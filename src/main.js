@@ -12,13 +12,15 @@ Vue.config.productionTip = false
 
 Vue.mixin(globalMethods)
 
-Vue.filter('money', function (value) {
+Vue.filter('money', value => {
   value = `${value}`
+  value = value.length === 0 ? '0' : value
   return `${parseInt(value.replace(/ /g, '')).toLocaleString()} руб`
 })
-Vue.filter('procent', function (value) {
+Vue.filter('procent', value => {
+  value = value.length === 0 ? '0' : value
   let val = (`${parseFloat(value)}`).slice(0, 5)
-  return (`${val} %`)
+  return `${val} %`
 })
 
 new Vue({
