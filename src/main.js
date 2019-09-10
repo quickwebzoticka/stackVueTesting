@@ -18,7 +18,7 @@ Vue.filter('money', value => {
   return `${parseInt(value.replace(/ /g, '')).toLocaleString()} руб`
 })
 Vue.filter('procent', value => {
-  value = value.length === 0 ? '0' : value
+  value = value === undefined ? value : isNaN(value) ? '0' : value.length === 0 ? '0' : value
   let val = (`${parseFloat(value)}`).slice(0, 5)
   return `${val} %`
 })

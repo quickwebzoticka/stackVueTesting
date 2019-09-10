@@ -1,12 +1,12 @@
 export default {
   methods: {
-    globalCommitData ($event, attr) {
+    globalCommitData ($event, attr, fixed) {
       let name = $event.target.getAttribute('name')
-      let data = $event.target[attr]
+      let data = fixed === undefined ? fixed : $event.target[attr]
 
       this.$store.commit('changeState', { name, data })
     },
-    setInput (event, attr) {
+    setInput (event, attr, fixed) {
       let name = event.target.getAttribute('name')
       this[name] = event.target.value
 
@@ -14,7 +14,7 @@ export default {
         this.$v[name].$touch()
         if (this.$v[name].$invalid) return false
       }
-      this.globalCommitData(event, attr)
+      this.globalCommitData(event, attr, fixed)
     },
     checkTab (e) {
       const tab = e.target.getAttribute('to')
