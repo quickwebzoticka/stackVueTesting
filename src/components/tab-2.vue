@@ -3,15 +3,15 @@
        <div class="tab-head">
            <h2>Информация о запрашиваем кредите</h2>
        </div>
-        <label class="input-radio" :class="{ active: this.$store.state.creditPurpose === 'Новостройка' }">
+        <label class="input-radio" :class="{ active: this.$store.state.tab2.creditPurpose === 'Новостройка' }">
             <input type="radio" name="creditPurpose" value="Новостройка" @change="setInput($event, 'value')">
             <span>Покупка квартиры в новостройке</span>
         </label>
-        <label class="input-radio" :class="{ active: this.$store.state.creditPurpose === 'Готовая недвижимость' }">
+        <label class="input-radio" :class="{ active: this.$store.state.tab2.creditPurpose === 'Готовая недвижимость' }">
             <input type="radio" name="creditPurpose" value="Готовая недвижимость" @change="setInput($event, 'value')">
             <span>Покупка квартиры в готовой недвижимости</span>
         </label>
-        <label class="input-radio" :class="{ active: this.$store.state.creditPurpose === 'Коммерческая недвижимость' }">
+        <label class="input-radio" :class="{ active: this.$store.state.tab2.creditPurpose === 'Коммерческая недвижимость' }">
             <input type="radio" name="creditPurpose" value="Коммерческая недвижимость" @change="setInput($event, 'value')">
             <span>Покупка коммерческой недвижимости</span>
         </label>
@@ -51,24 +51,28 @@
             <div class="button" @click="checkTab($event)" previous to="/">Назад</div>
             <div class="button" @click="checkTab($event)" to="third">Вперед</div>
         </div>
+        <pre class="test">{{ $store.state }}</pre>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 import { digits, procent, notHigher } from '../validations/validations'
+import testValidations from '../validations/testValidations'
 
 export default {
     data () {
         return {
-            creditPurpose: this.$store.state.creditPurpose,
-            priceOfBuild: this.$store.state.priceOfBuild,
-            firstPayment: this.$store.state.firstPayment,
-            firstPaymentProcent: this.$store.state.firstPaymentProcent,
-            summCredit: this.$store.state.summCredit
+
         }
     },
     computed: {
+        ...mapState(['creditPurpose',
+                     'priceOfBuild',
+                     'firstPayment',
+                     'firstPaymentProcent',
+                     'summCredit']),
         creditPurposeText () {
             if (this.creditPurpose === 'Новостройка') return 'квартиры в новостройке'
             if (this.creditPurpose === 'Готовая недвижимость') return 'квартиры в готовой недвижимости'
@@ -78,29 +82,33 @@ export default {
     },
     methods: {
         calcfirstPayment ($event) {
-            const value = $event.target.value
-            console.log(value)
-            this.firstPayment = value
-            this.firstPaymentProcent = (parseFloat(value) / parseFloat(this.priceOfBuild)) * 100
+            // const value = $event.target.value
+            // console.log(value)
+            // this.firstPayment = value
+            // this.firstPaymentProcent = (parseFloat(value) / parseFloat(this.priceOfBuild)) * 100
             this.setInput($event, 'value')
         },
         calcfirstPaymentProcent ($event) {
-            const value = $event.target.value
+            // const value = $event.target.value
 
-            this.firstPaymentProcent = value
-            this.firstPayment = (parseFloat(this.priceOfBuild) / 100) * parseFloat(value)
+            // this.firstPaymentProcent = value
+            // this.firstPayment = (parseFloat(this.priceOfBuild) / 100) * parseFloat(value)
             this.setInput($event, 'value')
         },
         calcpriceOfBuild ($event) {
-            const value = $event.target.value
+            // const value = $event.target.value
 
-            this.firstPaymentProcent = (parseFloat(this.firstPayment) / parseFloat(value)) * 100
-            this.firstPayment = (parseFloat(value) / 100) * parseFloat(this.firstPaymentProcent)
+            // this.firstPaymentProcent = (parseFloat(this.firstPayment) / parseFloat(value)) * 100
+            // this.firstPayment = (parseFloat(value) / 100) * parseFloat(this.firstPaymentProcent)
             this.setInput($event, 'value')
         },
         calcsummCredit ($event) {
             this.setInput($event, 'value')
         }
+    },
+    mounted () {
+        console.log(testValidations)
+        console.log(this.priceOfBuild)
     },
     validations () {
         return {

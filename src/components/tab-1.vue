@@ -1,6 +1,6 @@
 <template>
   <div class="tab">
-        <div class="input-wrapper" :class="{ error: $v.name.$error }">
+        <div class="input-wrapper" :class="{ error: $v.name.$error }" ref="test">
             <label>
                 <div class="input-label">Имя</div>
                 <input type="text" class="input-text" name="name" v-model="name" @change="setInput($event, 'value')">
@@ -14,10 +14,11 @@
                 <input type="text" class="input-text" name="lastName" v-model="lastName" @change="setInput($event, 'value')">
                 <div class="error" v-if="!$v.lastName.required && $v.lastName.$dirty">Поле обязательно для заполнения</div>
                 <div class="error" v-if="!$v.lastName.alpha && $v.lastName.$dirty">Может содержать только русские символы</div>
+                
             </label>            
         </div>
         <transition-group name='slide-down'>
-            <div class="input-wrapper" v-if="this.$store.state.hasSecondName" :key="hasSecondName" :class="{ error: $v.secondName.$error }">
+            <div class="input-wrapper" v-if="this.$store.state.tab1.hasSecondName" :key="hasSecondName" :class="{ error: $v.secondName.$error }">
                 <label>
                     <div class="input-label">Отчество</div>
                     <input type="text" class="input-text" name="secondName" v-model="secondName" @change="setInput($event, 'value')">
@@ -26,7 +27,7 @@
                 </label>
             </div>
         </transition-group>
-        <label class="checkbox-label" :class="{ active: !$store.state.hasSecondName }">
+        <label class="checkbox-label" :class="{ active: !$store.state.tab1.hasSecondName }">
             <input type="checkbox" name="hasSecondName" v-model="hasSecondName" @change="setInput($event, 'checked')">
             Нет отчества
         </label>
@@ -41,6 +42,8 @@
         <div class="tab-bottom">
             <div class="button" @click="checkTab($event)" to="second">Вперед</div>
         </div>
+        <pre class="test">{{ $store.state }}</pre>
+        <pre class="test">{{ hasSecondName }}</pre>
   </div>
 </template>
 
@@ -51,15 +54,15 @@ import { alpha, digits, date } from '../validations/validations'
 export default {
   data () {
     return {
-      hasSecondName: this.$store.state.hasSecondName,
-      name: this.$store.state.name,
-      lastName: this.$store.state.lastName,
-      secondName: this.$store.state.secondName,
-      birthday: this.$store.state.birthday
+      hasSecondName: this.$store.state.tab1.hasSecondName,
+      name: this.$store.state.tab1.name,
+      lastName: this.$store.state.tab1.lastName,
+      secondName: this.$store.state.tab1.secondName,
+      birthday: this.$store.state.tab1.birthday
     }
   },
   validations () {
-    if (this.hasSecondName) {
+    if (this.$store.state.tab1.hasSecondName) {
       return {
         name: {
           required,
@@ -81,13 +84,16 @@ export default {
     } else {
       return {
         name: {
-          required
+          required,
+          alpha
         },
         lastName: {
-          required
+          required,
+          alpha
         },
         birthday: {
-          required
+          required,
+          date
         }
       }
     }
