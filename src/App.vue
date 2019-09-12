@@ -3,6 +3,7 @@
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
+    <pre>{{ $store.state }}</pre>
   </div>
 </template>
 

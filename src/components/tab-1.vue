@@ -3,7 +3,7 @@
         <div class="input-wrapper" :class="{ error: $v.name.$error }" ref="test">
             <label>
                 <div class="input-label">Имя</div>
-                <input type="text" class="input-text" name="name" v-model="name" @change="setInput($event, 'value')">
+                <input type="text" class="input-text" name="name" v-model="name" @change="setInput($event, 'value', 'tab1')">
             </label>
             <div class="error" v-if="!$v.name.required && $v.name.$dirty">Поле обязательно для заполнения</div>
             <div class="error" v-if="!$v.name.alpha && $v.name.$dirty">Может содержать только русские символы</div>
@@ -11,7 +11,7 @@
         <div class="input-wrapper" :class="{ error: $v.lastName.$error }">
             <label>
                 <div class="input-label">Фамилия</div>
-                <input type="text" class="input-text" name="lastName" v-model="lastName" @change="setInput($event, 'value')">
+                <input type="text" class="input-text" name="lastName" v-model="lastName" @change="setInput($event, 'value', 'tab1')">
                 <div class="error" v-if="!$v.lastName.required && $v.lastName.$dirty">Поле обязательно для заполнения</div>
                 <div class="error" v-if="!$v.lastName.alpha && $v.lastName.$dirty">Может содержать только русские символы</div>
                 
@@ -21,20 +21,20 @@
             <div class="input-wrapper" v-if="this.$store.state.tab1.hasSecondName" :key="hasSecondName" :class="{ error: $v.secondName.$error }">
                 <label>
                     <div class="input-label">Отчество</div>
-                    <input type="text" class="input-text" name="secondName" v-model="secondName" @change="setInput($event, 'value')">
+                    <input type="text" class="input-text" name="secondName" v-model="secondName" @change="setInput($event, 'value', 'tab1')">
                     <div class="error" v-if="!$v.secondName.required && $v.secondName.$dirty">Поле обязательно для заполнения</div>
                     <div class="error" v-if="!$v.secondName.alpha && $v.secondName.$dirty">Может содержать только русские символы</div>
                 </label>
             </div>
         </transition-group>
         <label class="checkbox-label" :class="{ active: !$store.state.tab1.hasSecondName }">
-            <input type="checkbox" name="hasSecondName" v-model="hasSecondName" @change="setInput($event, 'checked')">
+            <input type="checkbox" name="hasSecondName" v-model="hasSecondName" @change="setInput($event, 'checked', 'tab1')">
             Нет отчества
         </label>
         <div class="input-wrapper" :class="{ error: $v.birthday.$error }">
             <label>
                 <div class="input-label">Дата рождения</div>
-                <input type="text" class="input-text" name="birthday" v-model="birthday" @change="setInput($event, 'value')">
+                <input type="text" class="input-text" name="birthday" v-model="birthday" @change="setInput($event, 'value', 'tab1')">
                 <div class="error" v-if="!$v.birthday.required && $v.birthday.$dirty">Поле обязательно для заполнения</div>
                 <div class="error" v-if="!$v.birthday.date && $v.birthday.$dirty">Должно быть в формате ДД.ММ.ГГГГ</div>
             </label>
@@ -42,8 +42,6 @@
         <div class="tab-bottom">
             <div class="button" @click="checkTab($event)" to="second">Вперед</div>
         </div>
-        <pre class="test">{{ $store.state }}</pre>
-        <pre class="test">{{ hasSecondName }}</pre>
   </div>
 </template>
 
