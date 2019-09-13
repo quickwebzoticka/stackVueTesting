@@ -9,5 +9,16 @@ export default {
         context.commit('changeState', { name, data, module })
       }
     }
+    // const iterate = (prevInfo) => {
+    //   Object.keys(prevInfo).forEach(key => {
+    //     const data = prevInfo[key]
+    //     const name = key
+
+    //     context.commit('changeState', { name, data })
+    //     if (typeof prevInfo[key] === 'object') {
+    //       iterate(prevInfo[key])
+    //     }
+    //   })
+    // }
   }
 }

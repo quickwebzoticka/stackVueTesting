@@ -1,3 +1,5 @@
+import { animateBack } from './animate'
+
 export default {
   methods: {
     globalCommitData ($event, attr, module) {
@@ -21,7 +23,7 @@ export default {
 
       this.$v.$touch()
       if (this.$v.$invalid && !e.target.hasAttribute('previous')) return false
-      this.$router.push(tab)
+      animateBack(this).then(() => this.$router.push(tab))
     }
   }
 }
