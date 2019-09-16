@@ -4,7 +4,7 @@ const animate = (context) => {
   const block = [...context.$el.querySelectorAll('[animated]')]
   const timeline = new TimelineLite()
   block.map(item => {
-    timeline.from(item, 0.1, {
+    timeline.from(item, 0.05, {
       x: -10,
       opacity: 0,
       ease: Back.easeInOut
@@ -19,10 +19,10 @@ const animate = (context) => {
 
 const animateBack = (context) => {
   return new Promise(resolve => {
-    const block = [...context.$el.querySelectorAll('[animated]')]
+    const block = [...context.$el.querySelectorAll('[animated]')].reverse()
     const timeline = new TimelineLite()
     block.map((item, index) => {
-      timeline.from(item, 0.1, {
+      timeline.from(item, 0.05, {
         x: 0,
         opacity: 1,
         ease: Back.easeInOut
