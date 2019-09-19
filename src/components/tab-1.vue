@@ -39,8 +39,8 @@
                 <div class="error" v-if="!$v.birthday.date && $v.birthday.$dirty">Должно быть в формате ДД.ММ.ГГГГ</div>
             </label>
         </div>
-        <div class="tab-bottom"  animated>
-            <div class="button" @click="checkTab($event)" to="second">Вперед</div>
+        <div class="tab-bottom" animated>
+            <div class="button" :class="{ disabled: $v.$error }" @click="checkTab($event)" to="second">Вперед</div>
         </div>
   </div>
 </template>

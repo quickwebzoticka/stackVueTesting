@@ -144,9 +144,8 @@
         </div>
         <div class="tab-bottom" animated>
             <div class="button" @click="checkTab($event)" previous to="/">Назад</div>
-            <div class="button" @click="checkTab($event)" to="third">Вперед</div>
+            <div class="button" :class="{ disabled: $v.$error }" @click="checkTab($event)" to="third">Вперед</div>
         </div>
-        <div @click="test()">test</div>
   </div>
 </template>
 
