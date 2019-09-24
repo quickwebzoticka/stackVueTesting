@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import first from '../components/tab-1'
 import second from '../components/tab-2'
 import third from '../components/tab-3'
+
 import empty from '../components/empty'
 
 Vue.use(VueRouter)

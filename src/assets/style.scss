@@ -16,6 +16,10 @@ body {
     width: 100%;
     min-height: 100vh;
 }
+.content {
+    position: relative;
+    min-height: 80vh;
+}
 label {
     display: inline-block;
     width: 100%;
@@ -147,6 +151,30 @@ label {
     }
 }
 
+.slide {
+    &-enter-active, &-leave-active {
+        transition: .3s;
+        position: absolute;
+        top: 0;
+    }
+    &-enter {
+        opacity: 0;
+        transform: translateX(50px);
+        &-to {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+    &-leave {
+        opacity: 1;
+        transform: translateX(0px);
+        &-to {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+    }
+}
+
 .checkbox-label {
     display: inline-block;
     position: relative;
@@ -221,4 +249,68 @@ label {
     color: red;
     font-size: 14px;
     
+}
+
+.tab-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.button {
+    &_person {
+        width: 100px;
+        border-radius: 5px;
+        border: 1px solid #fd7902;
+        color: #fd7902;
+        background: #FFFFFF;
+        padding: 10px;
+        transition: .3s ease-in-out;
+        margin-right: 10px;
+        cursor: pointer;
+        position: relative;
+        &.active {
+            background: #fd7902;
+            color: #FFFFFF;
+        }
+    }
+
+    &_add {
+        cursor: pointer;
+        color: #999999;
+    }
+}
+
+.cross {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: red;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:after, &:before {
+        content: '';
+        width: 12px;
+        height: 1px;
+        background: #FFFFFF;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+
+    &:before {
+        transform: translate(-50%, -50%) rotate(45deg)
+    }
+    &:after {
+        transform: translate(-50%, -50%) rotate(-45deg)
+    }
 }
